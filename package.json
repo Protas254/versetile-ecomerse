@@ -1,0 +1,17 @@
+{
+    "name": "Eternelle aura-app",
+    "version": "1.0.0",
+    "description": "Full stack application with Client and Server",
+    "scripts": {
+        "start": "concurrently \"npm run server\" \"npm run client\"",
+        "server": "cd server && . venv/bin/activate && python3 manage.py runserver 5000",
+        "client": "cd client && npm run dev",
+        "install:all": "cd server && npm install && cd ../client && npm install"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "concurrently": "^8.2.2"
+    }
+}

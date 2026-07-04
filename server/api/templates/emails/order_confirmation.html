@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Eternelle Aura</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f1f1f2;
+            margin: 0;
+            padding: 0;
+            color: #262626;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .header {
+            background-color: #F97316;
+            padding: 40px 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 10px 0 0;
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        .content {
+            padding: 30px;
+        }
+        .section-title {
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 700;
+            color: #737373;
+            letter-spacing: 0.1em;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 5px;
+        }
+        .grid {
+            display: table;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .grid-col {
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
+            padding-right: 10px;
+        }
+        .order-summary {
+            margin-bottom: 30px;
+        }
+        .order-item {
+            display: table;
+            width: 100%;
+            padding: 15px;
+            background-color: #fafafa;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #eeeeee;
+        }
+        .item-image {
+            display: table-cell;
+            width: 60px;
+            vertical-align: middle;
+        }
+        .item-image img {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid #e5e5e5;
+        }
+        .item-details {
+            display: table-cell;
+            vertical-align: middle;
+            padding-left: 15px;
+        }
+        .item-name {
+            font-weight: 700;
+            font-size: 14px;
+            margin: 0;
+        }
+        .item-meta {
+            font-size: 12px;
+            color: #737373;
+            margin: 2px 0;
+        }
+        .item-price {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: right;
+            font-weight: 700;
+            color: #F97316;
+            font-size: 14px;
+        }
+        .totals {
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        .total-row {
+            display: table;
+            width: 100%;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #737373;
+        }
+        .total-label {
+            display: table-cell;
+        }
+        .total-value {
+            display: table-cell;
+            text-align: right;
+            font-weight: 600;
+            color: #262626;
+        }
+        .total-final {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e5e5;
+            color: #262626;
+            font-weight: 700;
+        }
+        .total-final .total-value {
+            color: #F97316;
+            font-size: 24px;
+        }
+        .footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #737373;
+            background-color: #fafafa;
+        }
+        .button {
+            display: inline-block;
+            background-color: #F97316;
+            color: #ffffff;
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .payment-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: rgba(249, 115, 22, 0.1);
+            color: #F97316;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div style="font-size: 48px; margin-bottom: 10px;">✓</div>
+            <h1>Order Confirmed</h1>
+            <p>Thank you for your purchase, {{ order.full_name }}!</p>
+        </div>
+        
+        <div class="content">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <p style="color: #737373; line-height: 1.6;">
+                    We've received your order and are getting it ready for shipment. 
+                    You can track your order status in your account dashboard.
+                </p>
+            </div>
+
+            <div class="grid">
+                <div class="grid-col">
+                    <div class="section-title">Shipping To</div>
+                    <p style="font-weight: 700; margin: 0; font-size: 16px;">{{ order.full_name }}</p>
+                    <p style="color: #737373; margin: 5px 0; font-size: 14px; white-space: pre-line;">{{ order.shipping_address }}</p>
+                    <p style="color: #737373; margin: 10px 0; font-size: 14px;">{{ order.phone }}</p>
+                </div>
+                <div class="grid-col">
+                    <div class="section-title">Payment Method</div>
+                    <div class="payment-badge">{{ order.payment_method }}</div>
+                    <p style="font-size: 12px; color: #737373; margin: 5px 0;">
+                        {% if order.payment_method == 'Pay Now' %}
+                        Transaction processed securely.
+                        {% else %}
+                        Please have the total amount ready upon delivery.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <div class="section-title">Order Summary</div>
+                {% for item in order.items.all %}
+                <div class="order-item">
+                    <div class="item-image">
+                        {% if item.product.image %}
+                        <img src="{{ domain }}{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                        {% else %}
+                        <div style="width: 60px; height: 60px; background: #eee; border-radius: 8px;"></div>
+                        {% endif %}
+                    </div>
+                    <div class="item-details">
+                        <p class="item-name">{{ item.product.name }}</p>
+                        <p class="item-meta">{{ item.product.scent_type }} Collection</p>
+                        <p class="item-meta">QTY: {{ item.quantity }}</p>
+                    </div>
+                    <div class="item-price">
+                        KSh {{ item.price_total|default:item.price }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="totals">
+                <div class="total-row">
+                    <div class="total-label">Subtotal</div>
+                    <div class="total-value">KSh {{ order.subtotal }}</div>
+                </div>
+                <div class="total-row">
+                    <div class="total-label">Shipping</div>
+                    <div class="total-value">{% if order.subtotal > 10000 %}FREE{% else %}KSh 500{% endif %}</div>
+                </div>
+                <div class="total-row">
+                    <div class="total-label">Tax (16%)</div>
+                    <div class="total-value">KSh {{ order.tax_amount|default:"0" }}</div>
+                </div>
+                {% if order.discount_amount > 0 %}
+                <div class="total-row" style="color: #16a34a;">
+                    <div class="total-label">Discount {% if order.coupon %}({{ order.coupon.code }}){% endif %}</div>
+                    <div class="total-value" style="color: #16a34a;">- KSh {{ order.discount_amount }}</div>
+                </div>
+                {% endif %}
+                <div class="total-row total-final">
+                    <div class="total-label">Total Paid</div>
+                    <div class="total-value">KSh {{ order.total_price }}</div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="{{ domain }}/account" class="button">Track My Order</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© {{ year }} Eternelle Aura. All rights reserved.</p>
+            <p>Secure Order ID: #{{ order.id }}</p>
+            <p style="margin-top: 10px; font-size: 10px; opacity: 0.7;">256-BIT SSL ENCRYPTED</p>
+        </div>
+    </div>
+</body>
+</html>

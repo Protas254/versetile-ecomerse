@@ -1,0 +1,11 @@
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+# db.sqlite3 is not strictly ignored so it can be copied if not using volumes,
+# but usually it's best to ignore and let volume handle it.
+db.sqlite3
+.env

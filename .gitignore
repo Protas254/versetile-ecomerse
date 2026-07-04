@@ -1,0 +1,7 @@
+server/venv/
+server/.env
+server/__pycache__/
+server/*.pyc
+server/db.sqlite3
+client/node_modules/
+.env
